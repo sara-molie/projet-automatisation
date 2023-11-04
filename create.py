@@ -1,8 +1,7 @@
 import csv
 import os
 import pandas as pd
-import tkinter as tk
-from tkinter import filedialog
+
 
 def create():
     print("Tu as choisis 'Créer un AEF'.")
