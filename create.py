@@ -2,14 +2,14 @@ import csv
 import os
 import pandas as pd
 
-
 def create():
-    print("Tu as choisis 'Créer un AEF'.")
-    
+    print("Tu as choisis 'Créer un AEF'.")  
+
     # Demander à l'utilisateur le nom du fichier + le mettre dans le dossier et faire les vérifications
+    # + mettre a la fin .csv + l'espace
+
     file_name = input("Entrez le nom du fichier CSV : ")
     csv_folder = "csv"
-
     if not os.path.exists(csv_folder):  # Vérifie si le dossier csv existe sinon le crée
         os.mkdir(csv_folder)
     csv_file_path = os.path.join(csv_folder, file_name)
@@ -63,49 +63,40 @@ def create():
         print("\n")
         print(f"Les données ont été enregistrées dans le fichier {file_name}.")
 
-def modifier():
-    print("Tu as choisi 'Modifier un AEF'.")
-    
-    # Demande à l'utilisateur le nom du fichier CSV à modifier
-    #point negatif : il faut se rappeler du nom 
 
-#On peut meme afficher les fichier deja exisants et lui demander de choisir sous forme de menu 
-    file_name = input("Entrez le nom du fichier CSV à modifier : ")
-    csv_folder = "csv"
-    csv_file_path = os.path.join(csv_folder, file_name)
+def modification(csv_file_path):
 
-    if not os.path.exists(csv_file_path):  # Vérifier si le fichier existe
-        print("\n\033[91mLe fichier n'existe pas. Veuillez choisir un fichier existant.\033[0m")
-        return
-    
     # Lire le fichier CSV existant
     with open(csv_file_path, mode='r') as file:
         reader = csv.reader(file)
         data = list(reader)
-    
+
     # Affiche les données actuelles
     print("\nDonnées actuelles du fichier CSV :")
-    #je les separe avec un ' ' sinon il met 2fois ','
     for row in data:
         print(' '.join(row))
-    
-    # Demande à l'utilisateur de saisir de nouvelles données
-    print("\nEntrez les nouvelles données pour le fichier CSV (ou sur Entrée pour garder les valeurs actuelles) :")
-    
-#ATTENTION JE CROIS QUE POUR LES TRANSITIONS IL SUPPRIME TOUT, IL EN AJOUTE PAS 
-# A AMELIORER POUR AJOUTER DES TRANS
 
-    # l'état initial
-    new_initial_state = input(f"Nouvel état initial ({data[0][1]}): ") #on le met dans une liste de liste (premiere : etat initial deuxieme : element)
-    if new_initial_state: # si on change l'etat alors il prends la nouvelle valeur --> exemple q1 q2 c devient q1 q2 a 
+    # Demande à l'utilisateur de saisir de nouvelles données
+    print("\nEntrez les nouvelles données pour le fichier CSV (ou appuyez sur Entrée pour garder les valeurs actuelles) :")
+
+    # Nouvel état initial
+    new_initial_state = input(f"Nouvel état initial ({data[0][1]}): ")
+    if new_initial_state:
         data[0][1] = new_initial_state
-    
-    # l'état final
-    new_final_state = input(f"Nouvel état final ({data[1][1]}): ") 
+
+    # Nouvel état final
+    new_final_state = input(f"Nouvel état final ({data[1][1]}): ")
     if new_final_state:
         data[1][1] = new_final_state
-    
 
+    # Écrire les nouvelles données dans le fichier
+    with open(csv_file_path, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
+
+    print("\nLes données ont été mises à jour avec succès.")
+
+'''''
     # les nouvelles transitions
     new_transitions = [] #on le stock toujours dans une liste
     print("\nEntrez les nouvelles transitions ou 'ok' pour terminer :")
@@ -123,21 +114,17 @@ def modifier():
     if new_transitions:
         data[3:] = new_transitions  # Remplacer les transitions existantes par les nouvelles
     
-    # Enregistrer les modifications dans le fichier CSV
-    with open(csv_file_path, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        for row in data:
-            writer.writerow(row)
-    
     print("\nLes modifications ont été enregistrées dans le fichier CSV.")
-    
+'''''
 
-#fonction pour supprimer
+#fonction pour supprimer  BOUCLER 
 def supprimer():
     print("Tu as choisi 'Supprimer un fichier'.")
     
-    #  le nom du fichier CSV à supprimer
-    # toujours la possibilité de coder un menu contenant tous les fichier csv
+  # Demande à l'utilisateur le nom du fichier CSV à modifier
+    print("Voici les fichiers déjà existants: ")
+    os.system("ls ~/python/PROJET/csv |cat")
+
     file_name = input("Entrez le nom du fichier CSV à supprimer : ")
     csv_folder = "csv"
     csv_file_path = os.path.join(csv_folder, file_name)
@@ -149,5 +136,6 @@ def supprimer():
             print(f"Le fichier '{file_name}' a été supprimé.")
         else:
             print(f"Le fichier '{file_name}' n'a pas été supprimé.")
+        
     else:
         print("\n\033[91mLe fichier n'existe pas. Veuillez choisir un fichier existant à supprimer.\033[0m")
