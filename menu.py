@@ -1,5 +1,6 @@
 from create import *
-from verif import *
+import os
+
 
 #menu central
 def menu():
@@ -28,25 +29,53 @@ def menu():
         improve()
     elif option == "6":
         print("Goodbye !")
-        exit
+        exit()
     else:
         print("Choix invalide. Choisir une option valide (1-6).")
+    
+def modifier():
+    for i in range(10):
+        print("\n")
 
-# menu pour acceder a toutes les verifications
+    #on va demander a l'utilisateur de choisir son fichier
+    print("Voici les fichiers déjà existants : ")
+    os.system("ls ~/python/PROJET/csv | cat")
+
+    file_name = input("Entrez le nom du fichier CSV à modifier : ")
+    csv_folder = "csv"
+    csv_file_path = os.path.join(csv_folder, file_name)
+
+    if not os.path.exists(csv_file_path):  # Vérifier si le fichier existe
+        print("\n\033[91mLe fichier n'existe pas. Veuillez choisir un fichier existant.\033[0m")
+        return
+    
+    print("~~~~~~~~~~~~~~~~~~~~~~~")
+    print("1. Modifier les états")
+    print("2. Supprimer des transitions")
+    print("3. Ajouter des transitions")
+    print("4. Terminé")
+    print("~~~~~~~~~~~~~~~~~~~~~~~")
+
+    option = input ("Faire votre choix >> ")
+
+    if option == "1":
+        modification(csv_file_path)
+    elif option == "2":
+        delete()
+    elif option == "3":
+        add()
+    elif option == "4":
+        menu()
+        exit
+    else:
+        print("Choix invalide. Choisir une option valide")
+
+# menu pour acceder a toutes les verifications 
 def verif():
     for i in range (10):
         print("\n")
-        
     print("#######################")
     print("Select an option de vérification :")
-    print("1. Si un mot est reconnu")
-    print("2. Si un automate est complet")
-    print("3. Si un automate est deterministe")
-    print("4. Si tous les cycles sont unitaires")
-    print("5. L'equivalence entre 2 automates")
-    print("6. Retour")
-    print("########################")
-
     option = input("Faire votre choix>> ")
     if option == "1":
         mot(automate, mot)
@@ -66,7 +95,6 @@ def verif():
 
 #menu pour acceder aux améliorations possibles
 def improve():
-
     for i in range (10):
         print("\n")
 
