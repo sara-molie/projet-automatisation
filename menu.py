@@ -76,6 +76,15 @@ def verif():
         print("\n")
     print("#######################")
     print("Select an option de vérification :")
+    print("1. Si un mot est reconnu")
+    print("2. Si un AEF est deterministe")
+    print("3. Si un AEF est complet")
+    print("4. Si un AEF est unitaire")
+    print("5. Si un AEF est equivalent")
+    print("6. Retours")
+
+
+    print("#######################")
     option = input("Faire votre choix>> ")
     if option == "1":
         mot(automate, mot)
