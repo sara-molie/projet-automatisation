@@ -7,7 +7,26 @@ TO DO LIST
       [] faire la fonction ajouter et supprimer les transitions 
   --> supprimer :
       [] ok 
+  --> verifier : 
+      [] si un mot est reconnu
+      [] si un automate est complet
+      [] si un automate est deterministe
+      [] si deux automates sont equivalents 
+--> Amelioration : 
+      [] Rendre un automate complet
+      [] Rendre un automate deterministe
+      [] Rendre un automate émondé
+      [] Rendre un automate minimal
     
-
-
 reboucler le menu 
+
+
+rajouter en plus dans le code
+Réalisé les opérations suivantes :
+    [] complement d'un AEF 
+    [] miroir d'un AEF
+    [] produit de deux AEF
+    [] concatenation de deux AEF
+
+Extraire une expression régulière 
+trouver le langage
