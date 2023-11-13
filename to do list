@@ -1,0 +1,13 @@
+TO DO LIST 
+
+[] Menu central ( crée, modifier, supprimer, verifier, ameliorer, exit)
+  --> créer : 
+      [] mettre au bon format : "q..." 
+  --> Modifier : 
+      [] faire la fonction ajouter et supprimer les transitions 
+  --> supprimer :
+      [] ok 
+    
+
+
+reboucler le menu 
