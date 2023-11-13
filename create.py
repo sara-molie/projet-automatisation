@@ -1,6 +1,6 @@
 import csv
 import os
-import pandas as pd
+
 
 def create():
     print("Tu as choisis 'Créer un AEF'.")  
@@ -26,29 +26,33 @@ def create():
 
         # Vérification si l'utilisateur a entré plusieurs valeurs avec ','
         if ',' in initial_state:
+            print("\033[91mErreur : Un automate à état fini possède un seul état initial mais peut avoir plusieurs états finaux.\033[0m\n") 
+            return
+        if ' ' in initial_state:
             print("\033[91mErreur : Un automate à état fini possède un seul état initial mais peut avoir plusieurs états finaux.\033[0m\n")
             return
 
-        final_state = input("Entrez l'état final de l'automate : ")
-
-        # Demander à l'utilisateur de saisir les transitions sous forme de matrice
-        print("\nEntrez les transitions de votre automate sous forme de matrice (séparez les éléments par des espaces) :")
-        print("Pour finir mettre 'ok'\n")
-        
-        transitions = []  # Pour stocker les transitions dans une liste
-
-        #on effectue une boucle tant qu'il n'appuie pas sur ok on continu
-        while True:
-            transition_input = input()
-            if transition_input == 'ok':
-                break
-            else: #et on regarde la forme 
-                transition_data = transition_input.split()
-                if len(transition_data) != 3:
-                    print("\033[91mErreur : Format de transition invalide.\033[0m")
-                else:
-                    transitions.append(transition_data)
-        
+        final_state = input("Entrez l'état final de l'automate (séparez par des ','): ")
+        if ',' in final_state:
+            # Demander à l'utilisateur de saisir les transitions sous forme de matrice
+            print("\nEntrez les transitions de votre automate sous forme de matrice (séparez les éléments par des espaces) :")
+            print("Pour finir mettre 'ok'\n")
+            
+            transitions = []  # Pour stocker les transitions dans une liste
+            #on effectue une boucle tant qu'il n'appuie pas sur ok on continu
+            while True:
+                transition_input = input()
+                if transition_input == 'ok':
+                    break
+                else: #et on regarde la forme 
+                    transition_data = transition_input.split()
+                    if len(transition_data) != 3:
+                        print("\033[91mErreur : Format de transition invalide.\033[0m")
+                    else:
+                        transitions.append(transition_data)
+        else:
+            print("\033[91mErreur :De synthese\033[0m\n")
+            return
         # Créer un fichier CSV avec le nom spécifié pour enregistrer les données
         with open(csv_file_path, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -63,9 +67,7 @@ def create():
         print("\n")
         print(f"Les données ont été enregistrées dans le fichier {file_name}.")
 
-
 def modification(csv_file_path):
-
     # Lire le fichier CSV existant
     with open(csv_file_path, mode='r') as file:
         reader = csv.reader(file)
