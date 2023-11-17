@@ -8,11 +8,11 @@ TO DO LIST
       [X] faire la fonction ajouter et supprimer les transitions 
 l'utilisateur a la possibilité de choisir sa ligne a supprimer et sa ligne pour rajouter les transitions
       []   Rediriger l'option Retour vers le menu principal(Erreur)
-      []   Afficher le contenu du fichier avant de choisir quoi modifier (avant le 2eme menu)
+      [X]   Afficher le contenu du fichier avant de choisir quoi modifier (avant le 2eme menu)
       []   Ajouter la possibilité de revenir à l'étape précédente en cas d'erreur
 
   --> supprimer :
-      [] Afficher la liste des fichiers existants
+      [X] Afficher la liste des fichiers existants
 
   --> verifier : 
       [] si un mot est reconnu
