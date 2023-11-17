@@ -16,8 +16,7 @@ l'utilisateur a la possibilité de choisir sa ligne a supprimer et sa ligne pour
   --> verifier : 
       [] si un mot est reconnu
       [] si un automate est complet
-      [] si un automate est deterministe
-              [] Erreur lorsqu'on choisi cette option
+      [] si un automate est deterministe                          importcsv() problème chemin de fichier
       [] si deux automates sont equivalents 
 
 --> Amelioration : 
